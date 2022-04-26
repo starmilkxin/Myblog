@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.xin.myblog.dao.CommentMapper">
+    <sql id="selectFields">
+        id, avatar, content, create_time, nickname, blog_id, parent_comment_id, admin_comment, ip
+    </sql>
+    <sql id="insertFields">
+        avatar, content, create_time, nickname, blog_id, parent_comment_id, admin_comment, ip
+    </sql>
+
+    <select id="selectCommentByBlogIdANDParentCommentId" resultType="Comment">
+        SELECT <include refid="selectFields"/>
+        FROM t_comment
+        <where>
+            <if test="blogId != null">
+                blog_id = #{blogId}
+            </if>
+            <if test="parentCommentId != null">
+                AND parent_comment_id = #{parentCommentId}
+            </if>
+        </where>
+        ORDER BY create_time ASC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectCommentByBlogIdANDParentCommentIdRows" resultType="int">
+        SELECT COUNT(id)
+        FROM t_comment
+        <where>
+            <if test="blogId != null">
+                blog_id = #{blogId}
+            </if>
+            <if test="parentCommentId != null">
+                AND parent_comment_id = #{parentCommentId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertComment" parameterType="Comment">
+        INSERT INTO t_comment(<include refid="insertFields"/>)
+        VALUES(#{avatar}, #{content}, #{createTime}, #{nickname}, #{blogId}, #{parentCommentId}, #{adminComment}, #{ip})
+    </insert>
+
+    <select id="get_comment_rowsByIp" resultType="Integer">
+        SELECT COUNT(id)
+        FROM t_comment
+        WHERE ip = #{ip}
+        AND create_time > #{yesterday}
+    </select>
+</mapper>

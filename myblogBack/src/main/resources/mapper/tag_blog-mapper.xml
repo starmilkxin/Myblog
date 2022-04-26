@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.xin.myblog.dao.Tag_BlogMapper">
+    <delete id="deleteAllTags" parameterType="Blog">
+        DELETE FROM t_tag_blog
+        WHERE blog_id = #{id}
+    </delete>
+
+    <insert id="insertAllTags" parameterType="Blog">
+        INSERT INTO t_tag_blog
+        SET tag_id = #{tagId},
+            blog_id = #{blogId}
+    </insert>
+</mapper>

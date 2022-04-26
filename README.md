@@ -1,5 +1,6 @@
 # XINBlog
-一款简单的自用博客。
+一款简单的自用博客
+域名：starmilk.top
 
 myblog为旧版的，前后端不分离。
 

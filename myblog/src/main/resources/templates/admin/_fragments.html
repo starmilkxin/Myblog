@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:replace="${title}">博客详情</title>
+
+  <!--  网页图标的设置 -->
+  <!--  <link rel="icon" href="/myblog/img.png">-->
+  <link rel="icon" th:href="@{/img.png}">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+  <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+  <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+  <!--  音乐-->
+  <link rel="stylesheet" th:href="@{/css/APlayer.min.css}">
+</head>
+<body>
+
+<!--导航-->
+<div th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small m-opacity-mini">
+  <div class="ui container">
+    <div class="ui inverted secondary stackable menu">
+      <h2 class="ui teal header item">管理后台</h2>
+      <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active' : ''"><i class="home icon"></i>博客</a>
+      <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active' : ''"><i class="idea icon"></i>分类</a>
+      <a th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active' : ''"><i class="tags icon"></i>标签</a>
+      <a th:href="@{/index}" class="m-item item m-mobile-hide" target="_blank"><i class="clone icon"></i>主页</a>
+      <div class="m-item m-mobile-hide menu" th:if="${user != null && user.type == 1}">
+        <div class="ui dropdown right item">
+          <div class="text">
+            <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005" th:src="${user.avatar}"/>
+            <span th:text="${user.nickname}">李仁密</span>
+          </div>
+          <i class="dropdown icon"></i>
+          <div class="menu" >
+            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+    <i class="sidebar icon"></i>
+  </a>
+</div>
+
+<!--导航-->
+
+
+
+<!--底部footer-->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-small m-opacity">
+  <div class="ui center aligned container">
+    <div class="ui inverted divided stackable grid">
+      <div class="three wide column">
+        <div class="ui inverted link list">
+          <div class="item">
+            <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}"  class="ui rounded image" alt="" style="width: 110px">
+          </div>
+        </div>
+      </div>
+      <div class="three wide column">
+        <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
+        <div class="ui inverted link list">
+          <a class="item m-text-thin">Email：jingxin_1@163.com</a>
+          <a class="item m-text-thin">QQ：1016231041</a>
+        </div>
+      </div>
+      <div class="seven wide column">
+        <h4 class="ui inverted header m-text-thin m-text-spaced ">XIN's Blog</h4>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+      </div>
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2021 阿鑫 Designed by 阿鑫</p>
+    <a href="https://beian.miit.gov.cn" target="_blank">沪ICP备2021033460号-1</a>
+  </div>
+
+</footer>
+
+<th:block th:fragment="script">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+  <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+  <!--音乐-->
+  <script th:src="@{/js/APlayer.min.js}"></script>
+  <script th:src="@{/js/myaplayer.js}"></script>
+  <!--雪花特效-->
+  <script th:src="@{/js/snowy.js}"></script>
+  <style type="text/css">
+    .snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>
+  <div class="snow-container"></div>
+</th:block>
+
+</body>
+</html>

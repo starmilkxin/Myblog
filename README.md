@@ -3,7 +3,7 @@
 
 myblog为旧版的，前后端不分离。
 
-之后重构为前后端分离，myblogFront为前端，myblogBack为后端。
+之后重构为前后端分离，XINBlogFront为前端，XINBlog为后端。
 
 技术栈：
 + 前端： Vue + JS + axios + Semantic UI + Element UI

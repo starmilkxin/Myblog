@@ -14,7 +14,7 @@ spring:
   # DataSourceProperties
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${address}/myblog?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${address}/myblog?characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
     username: ENC(ZwwqCyn6iX3NB+Md304OHw==)
     hikari:
       connection-timeout: 30000
@@ -35,7 +35,7 @@ spring:
     bootstrap-servers: ENC(icI90qK5i/WdEv1xLTzaRgEhvjuDFAPrizXVf0qhvxY=)
     consumer:
       auto-offset-reset: earliest
-      enable-auto-commit: true
+      enable-auto-commit: false
       group-id: myblog-consumer-group
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

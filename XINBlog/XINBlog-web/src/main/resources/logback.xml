@@ -4,8 +4,11 @@
 
     <contextName>XINBlog</contextName>
 
+    <!--为了防止进程退出时，内存中的数据丢失，请加上此选项-->
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
     <!-- 设置日志输出路径  可以使“${}”来使用变量-->
-    <property name="log.path" value="logs"/>
+    <property name="log.path" value="/var/logs"/>
 
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
